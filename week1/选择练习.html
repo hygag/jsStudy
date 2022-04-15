@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>全选练习</title>
+<script>
+    
+    
+    //写在head里面记得都放在window.onload = function(){};里面
+
+
+    window.onload = function(){
+        var items = document.getElementsByName("items");
+    //获得各个name
+    var checkedAllBox = document.getElementById("checkedAllBox");
+    
+    //全选
+    var checkedAllBtn = document.getElementById("checkedAllBtn");
+		checkedAllBtn.onclick = function(){
+            //上面的也选
+            checkedAllBox.checked = true;
+            //buttom
+			for(var i = 0; i < items.length; i ++){
+                items[i].checked = true;
+            }
+		}
+    //全不选
+    var checkedNoBtn = document.getElementById("checkedNoBtn")
+        checkedNoBtn.onclick = function(){
+            checkedAllBox.checked = false;
+            //buttom
+            for(var i = 0; i < items.length; i ++){
+                items[i].checked = false;
+            }
+        }
+    //反选
+    var checkedRevBtn = document.getElementById("checkedRevBtn");
+        checkedRevBtn.onclick = function(){
+            //buttom
+            for(var i = 0; i < items.length; i ++){
+                items[i].checked = !items[i].checked;
+            }
+            var t = 0;
+            
+            
+            //控制上面那个全选跟全不选的复选框
+            for(var i = 0; i < items.length; i ++){
+                if(items[i].checked) t ++;
+            }
+            if(t == items.length) checkedAllBox.checked = true;
+            else checkedAllBox.checked = false;
+        }
+    //提交
+    var sendBtn = document.getElementById("sendBtn");
+        sendBtn.onclick = function(){
+            for(var i = 0; i < items.length; i ++){
+                if(items[i].checked) alert(items[i].value);
+            }
+        }
+    //复选框
+    var checkedAllBox = document.getElementById("checkedAllBox");
+        checkedAllBox.onclick = function(){
+            for(var i = 0; i < items.length; i ++){
+                items[i].checked = checkedAllBox.checked;
+            }
+        }
+    //items
+    for(var i = 0; i < items.length; i ++){
+        items[i].onclick = function(){
+            checkedAllBox.checked = true;//设置默认值
+            
+            //如果有false 则直接变false
+            for(var j = 0; j < items.length; j ++){
+                if(!items[j].checked) checkedAllBox.checked = false;
+            }
+        }
+    }
+    };
+    
+
+</script>
+</head>
+<body>
+    
+	<form method="post" action="">
+		你爱好的运动是？<input type="checkbox" id="checkedAllBox" />全选/全不选 
+		<br />
+		<input type="checkbox" name="items" value="足球" />足球
+		<input type="checkbox" name="items" value="篮球" />篮球
+		<input type="checkbox" name="items" value="羽毛球" />羽毛球
+		<input type="checkbox" name="items" value="乒乓球" />乒乓球
+		<br />
+		<input type="button" id="checkedAllBtn" value="全　选" />
+		<input type="button" id="checkedNoBtn" value="全不选" />
+		<input type="button" id="checkedRevBtn" value="反　选" />
+		<input type="button" id="sendBtn" value="提　交" />
+	</form>
+</body>
+</html>
