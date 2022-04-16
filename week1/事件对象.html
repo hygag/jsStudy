@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件对象</title>
+    <style>
+        *{
+            padding: 0px;
+            margin: 0px;
+        }
+        #box0 {
+            border: 1px solid black;
+            width: 300px;
+            height: 100px;
+        }
+
+        #box1 {
+            margin-top: 20px;
+            border: 1px solid black;
+            width: 300px;
+            height: 30px;
+        }
+
+        #mainBox{
+            margin: 50px;
+            width: 300px;
+            height: 150px;
+            border: 1px solid black;
+            position: relative;
+        }
+    </style>
+
+    <script>
+        /*
+		 * onmousemove
+		 * 	- 该事件将会在鼠标在元素中移动时被触发
+		 * 
+		 * 事件对象
+		 * 	- 当事件的响应函数被触发时，浏览器每次都会将一个事件对象作为实参传递进响应函数,
+		 * 		在事件对象中封装了当前事件相关的一切信息，比如：鼠标的坐标  键盘哪个按键被按下  鼠标滚轮滚动的方向。。。
+		 */
+        window.onload = function(){
+            var box0 = document.getElementById("box0");
+            var doc = document.getElementById("doc");
+
+            box0.onmousemove = function(event){
+                var x = event.clientX;
+                var y = event.clientY;
+
+                event = event || window.event;
+                //解决浏览器兼容性问题
+
+                doc.innerHTML = x + ":" + y;
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id = "mainBox">
+    <div id="box0"></div>
+    <div id="box1">
+        <p id = "doc">
+
+        </p>
+    </div>
+</div>
+</body>
+
+</html>
