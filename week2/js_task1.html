@@ -3269,58 +3269,77 @@
             ];
             var selects = document.getElementsByTagName("select");
             var p, c;
+
             province.onclick = function () {
                 selects[0].options.length = 0;
                 selects[1].options.length = 0;
                 selects[2].options.length = 0;
-               
-                var option = document.createElement("option");
-                option.value = "请选择你的省份";
-                option.innerHTML = "请选择你的省份";
-                selects[0].appendChild(option);
-                
-                option.value = "请选择你的城市";
-                option.innerHTML = "请选择你的城市";
-                selects[1].appendChild(option);
-                
+
                 for (var i = 0; i < 31; i++) {
                     var option = document.createElement("option");
                     option.value = a[i].item_code;
                     option.innerHTML = a[i].item_name;
                     selects[0].appendChild(option);
                 }
-                p = this.value;
-            }
 
-            city.onclick = function () {
-                selects[1].options.length = 0;
-                selects[2].options.length = 0;
-                var option = document.createElement("option");
-                option.value = "请选择你的县镇";
-                option.innerHTML = "请选择你的县镇";
-                selects[2].appendChild(option);
-                for (var i = 31; i < 367; i++) {
-                    if (a[i].item_code[0] == p[0] && a[i].item_code[1] == p[1]) {
+                province.onclick = function () {
+
+                    p = this.value;
+                    selects[1].options.length = 0;
+                    selects[2].options.length = 0;
+                    option.value = "请选择你的城市";
+                    option.innerHTML = "请选择你的城市";
+                    selects[1].appendChild(option);
+
+
+                    city.onclick = function () {
+
+                        selects[1].options.length = 0;
+
+
                         var option = document.createElement("option");
-                        option.value = a[i].item_code;
-                        option.innerHTML = a[i].item_name;
-                        selects[1].appendChild(option);
+
+
+                        for (var i = 31; i < 367; i++) {
+                            if (a[i].item_code[0] == p[0] && a[i].item_code[1] == p[1]) {
+                                var option = document.createElement("option");
+                                option.value = a[i].item_code;
+                                option.innerHTML = a[i].item_name;
+                                selects[1].appendChild(option);
+                            }
+                        }
+                        city.onclick = function () {
+                            c = this.value;
+                            selects[2].options.length = 0;
+                            
+                            option.value = "请选择你的县镇";
+                            option.innerHTML = "请选择你的县镇";
+                            selects[2].appendChild(option);
+                            
+                            town.onclick = function () {
+                                selects[2].options.length = 0;
+
+                                for (var i = 367; i < 400 + 2844; i++) {
+                                    if (a[i].item_code[0] == p[0] && a[i].item_code[1] == p[1] && a[i].item_code[2] == c[2] && a[i].item_code[3] == c[3]) {
+                                        var option = document.createElement("option");
+                                        option.value = a[i].item_code;
+                                        option.innerHTML = a[i].item_name;
+                                        selects[2].appendChild(option);
+                                    }
+                                    town.onclick = function () { };
+                                }
+                            }
+                        }
+
+
                     }
                 }
-                c = this.value;
             }
 
-            town.onclick = function () {
-                selects[2].options.length = 0;
-                for (var i = 367; i < 400 + 2844; i++) {
-                    if (a[i].item_code[0] == p[0] && a[i].item_code[1] == p[1] && a[i].item_code[2] == c[2] && a[i].item_code[3] == c[3]) {
-                        var option = document.createElement("option");
-                        option.value = a[i].item_code;
-                        option.innerHTML = a[i].item_name;
-                        selects[2].appendChild(option);
-                    }
-                }
-            }
+
+
+
+
         }
     </script>
 </head>
