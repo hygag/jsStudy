@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .Main{
+            display: flex;
+
+            background-color: aqua;
+            /* justify-content: space-around; */
+            width: 500px;
+            height: 200px;
+            align-items: flex-end;
+        }
+        .Main > div{
+            width: 50px;
+            height: 90%;
+            background-color: blueviolet;
+            margin-left: 50px;
+        }
+      
+    </style>
+</head>
+
+<body>
+    <div class="Main">
+        <div class="a"></div>
+        <div class="b" style="background-color: red;"></div>
+    </div>
+    <button id = "exchange">交换</button>
+
+    <script>
+        var exchange = document.getElementById("exchange");
+        var Main = document.getElementsByClassName("Main")[0];
+        var divs = Main.getElementsByTagName("div");
+        alert(Main);
+       
+        exchange.onclick = function(){
+            divs[0].innerHTML = "a";
+
+            var x = divs[1].offsetLeft - divs[0].offsetLeft;
+            //alert(divs[0].innerHTML);
+            //divs[0].style.backgroundColor = "blue";
+            divs[0].style.transform = "translate(" + x + "px)";
+            divs[0].style.transition = "all 2s";
+            
+            divs[1].style.transform = "translate(-" + x + "px)";
+            divs[1].style.transition = "all 2s";
+        }
+    </script>
+    
+</body>
+
+</html>
